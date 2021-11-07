@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7f5d97da87571394a9063fde3563c865, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5de97a0a6dd497649b38fd1de15b6ac8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -153,3 +153,5 @@ MonoBehaviour:
   obstacle: {fileID: 0}
   destroyPos: -10
   laneNumber: 0
+  lowerbound: 0
+  upperbound: 0.2

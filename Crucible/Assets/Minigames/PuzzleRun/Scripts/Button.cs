@@ -39,8 +39,8 @@ public class Button : MonoBehaviour
         Player1 player1 = GameObject.Find("Player1").GetComponent<Player1>();
         Player2 player2 = GameObject.Find("Player2").GetComponent<Player2>();
         if (!buttonPressed &&
-            player1.transform.position.y < button.transform.position.y && 
-            button.transform.position.y < player1.transform.position.y + 0.5f)
+            player1.transform.position.y + 0.1f < button.transform.position.y && 
+            button.transform.position.y < player1.transform.position.y + 0.2f)
         {
             Obstacle[] obstacles = FindObjectsOfType<Obstacle>();
             if (laneNumber == player1.laneNumber)
