@@ -153,3 +153,5 @@ MonoBehaviour:
   obstacle: {fileID: 0}
   destroyPos: -10
   laneNumber: 0
+  lowerbound: 0
+  upperbound: 0.2

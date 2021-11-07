@@ -8,6 +8,7 @@ public class Obstacle : MonoBehaviour
     public Vector3 obstacleRef1Pos;
     public GameObject obstacleRef2;
     public Vector3 obstacleRef2Pos;
+    //public float speedFactor;
     public Vector3 laneSeparation = new Vector3(1.59f, 0.0f, 0.0f);
     public int height;
     public Rigidbody2D obstacle;
@@ -15,7 +16,7 @@ public class Obstacle : MonoBehaviour
     public int laneNumber;
     private float length;
     public float lowerbound = 0f;
-    public float upperbound = 0.2f;
+    public float upperbound = 1f;
 
     void Start()
     {
@@ -36,7 +37,8 @@ public class Obstacle : MonoBehaviour
 
     void Update()
     {
-
+        //speedFactor += 0.01f;
+        //obstacle.velocity = Vector2.down * speedFactor;
         laneNumber = getLane();
         Player1 player1 = GameObject.Find("Player1").GetComponent<Player1>();
         Player2 player2 = GameObject.Find("Player2").GetComponent<Player2>();
