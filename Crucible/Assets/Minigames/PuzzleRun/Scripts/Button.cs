@@ -16,6 +16,9 @@ public class Button : MonoBehaviour
     public Vector3 buttonRef2Pos;
     public Vector3 laneSeparation = new Vector3(1.59f, 0.0f, 0.0f);
 
+    public float lowerbound = 0.1f;
+    public float upperbound = 0.2f;
+
     public Sprite[] spriteArray;
 
     void Start()
@@ -40,9 +43,13 @@ public class Button : MonoBehaviour
         laneNumber = getLane();
         Player1 player1 = GameObject.Find("Player1").GetComponent<Player1>();
         Player2 player2 = GameObject.Find("Player2").GetComponent<Player2>();
+
+        lowerbound = 0.1f * (button.velocity.y / (Vector2.down.y * 3) / 2);
+        upperbound = 0.2f * (button.velocity.y / (Vector2.down.y * 3) );
+
         if (!buttonPressed &&
-            player1.transform.position.y + 0.1f < button.transform.position.y && 
-            button.transform.position.y < player1.transform.position.y + 0.2f)
+            player1.transform.position.y - lowerbound < button.transform.position.y &&
+            button.transform.position.y < player1.transform.position.y + upperbound)
         {
             Obstacle[] obstacles = FindObjectsOfType<Obstacle>();
             if (laneNumber == player1.laneNumber)
