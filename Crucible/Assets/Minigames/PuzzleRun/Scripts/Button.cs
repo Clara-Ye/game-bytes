@@ -16,7 +16,7 @@ public class Button : MonoBehaviour
     public Vector3 buttonRef2Pos;
     public Vector3 laneSeparation = new Vector3(1.59f, 0.0f, 0.0f);
 
-    public float lowerbound = 0.1f;
+    public float lowerbound = 0.5f;
     public float upperbound = 0.2f;
 
     public Sprite[] spriteArray;
@@ -40,26 +40,31 @@ public class Button : MonoBehaviour
     {
         button.velocity += Vector2.down * 0.0005f;
 
+        if (button.transform.position.y < destroyPos)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         laneNumber = getLane();
         Player1 player1 = GameObject.Find("Player1").GetComponent<Player1>();
         Player2 player2 = GameObject.Find("Player2").GetComponent<Player2>();
 
-        lowerbound = 0.1f * (button.velocity.y / (Vector2.down.y * 3) / 2);
-        upperbound = 0.2f * (button.velocity.y / (Vector2.down.y * 3) );
-
-        if (!buttonPressed &&
-            player1.transform.position.y - lowerbound < button.transform.position.y &&
-            button.transform.position.y < player1.transform.position.y + upperbound)
+        if (!buttonPressed)
         {
             Obstacle[] obstacles = FindObjectsOfType<Obstacle>();
             if (laneNumber == player1.laneNumber)
             {
                 buttonPressed = true;
-                for (int i = 0; i < obstacles.Length; i++) {
+                for (int i = 0; i < obstacles.Length; i++)
+                {
                     Obstacle curr_obstacle = obstacles[i].GetComponent<Obstacle>();
                     curr_obstacle.height += change;
-                    if (curr_obstacle.height > 2) {
-                        curr_obstacle.height = 2;  
+                    if (curr_obstacle.height > 2)
+                    {
+                        curr_obstacle.height = 2;
                     }
                     if (curr_obstacle.height < -2)
                     {
@@ -88,11 +93,6 @@ public class Button : MonoBehaviour
                     spriteRenderer.sprite = spriteArray[curr_obstacle.height + 2];
                 }
             }
-        }
-
-        if (button.transform.position.y < destroyPos)
-        {
-            Destroy(gameObject);
         }
     }
 }
