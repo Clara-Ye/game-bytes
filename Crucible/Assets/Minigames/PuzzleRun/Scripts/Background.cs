@@ -19,6 +19,7 @@ public class Background : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        background.velocity += Vector2.down * 0.0005f;
         if (transform.position.y < -5.08)
         {
             transform.position = new Vector3(transform.position.x,

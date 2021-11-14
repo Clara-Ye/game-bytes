@@ -6,6 +6,7 @@ public class Sprawner : MonoBehaviour
 {
     private float interval;
     private float timePassed = 0;
+    public Vector2 speed;
 
     public GameObject obstacleRef1;
     public Vector3 obstacleRef1Pos;
@@ -20,11 +21,11 @@ public class Sprawner : MonoBehaviour
     public GameObject[] obstaclePool = new GameObject[5];
     public GameObject[] buttonPool = new GameObject[3];
 
-    private int obstacle_mode = 0;
-    private bool player1_obstacle = false;
-    private bool player2_obstacle = false;
-    private bool player1_button = false;
-    private bool player2_button = false;
+    public int obstacle_mode = 0;
+    public bool player1_obstacle = false;
+    public bool player2_obstacle = false;
+    public bool player1_button = false;
+    public bool player2_button = false;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class Sprawner : MonoBehaviour
         buttonRef1Pos = buttonRef1.transform.position;
         buttonRef2Pos = buttonRef2.transform.position;
         interval = 3f;
+        speed = Vector2.down * 3;
 
         // decide which player gets obstacle and which gets button:
         getObstacleMode();
@@ -46,8 +48,10 @@ public class Sprawner : MonoBehaviour
 
     void Update()
     {
-
         timePassed += Time.deltaTime;
+        speed += Vector2.down * 0.0005f;
+        interval -= 0.0001f;
+
         if (timePassed > interval)
         {
             getObstacleMode();
@@ -112,9 +116,10 @@ public class Sprawner : MonoBehaviour
                 int i = Random.Range(0, 3);
                 curr_obstacles1[i] = obstaclePool[obs_i]; 
             }
-            for (int i = 0; i < 3; i++) 
+            for (int i = 0; i < 3; i++)
             {
-                Instantiate(curr_obstacles1[i], obstacleRef1Pos + laneSeparation * i, Quaternion.identity);
+                GameObject curr_obstacle1 = Instantiate(curr_obstacles1[i], obstacleRef1Pos + laneSeparation * i, Quaternion.identity);
+                curr_obstacle1.GetComponent<Rigidbody2D>().velocity = speed;
                 timePassed = 0;
             }
         }
@@ -143,7 +148,8 @@ public class Sprawner : MonoBehaviour
             }
             for (int i = 0; i < 3; i++)
             {
-                Instantiate(curr_obstacles2[i], obstacleRef2Pos + laneSeparation * i, Quaternion.identity);
+                GameObject curr_obstacle2 = Instantiate(curr_obstacles2[i], obstacleRef2Pos + laneSeparation * i, Quaternion.identity);
+                curr_obstacle2.GetComponent<Rigidbody2D>().velocity = speed;
                 timePassed = 0;
             }
         }
@@ -162,17 +168,17 @@ public class Sprawner : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
-                GameObject currButton = buttonPool[i];
-                Instantiate(currButton, buttonRef1Pos + laneSeparation * i, Quaternion.identity);
+                GameObject currButton1 = Instantiate(buttonPool[i], buttonRef1Pos + laneSeparation * i, Quaternion.identity);
+                currButton1.GetComponent<Rigidbody2D>().velocity = speed;
                 timePassed = 0;
             }
         }
         if (playerNumber == 2)
         {
             for (int i = 0; i < 3; i++)
-            {
-                GameObject currButton = buttonPool[i];
-                Instantiate(currButton, buttonRef2Pos + laneSeparation * i, Quaternion.identity);
+            {   
+                GameObject currButton2 = Instantiate(buttonPool[i], buttonRef2Pos + laneSeparation * i, Quaternion.identity);
+                currButton2.GetComponent<Rigidbody2D>().velocity = speed;
                 timePassed = 0;
             }
         }
