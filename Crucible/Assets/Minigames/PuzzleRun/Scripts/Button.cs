@@ -17,10 +17,10 @@ public class Button : MonoBehaviour
     public Vector3 laneSeparation = new Vector3(1.59f, 0.0f, 0.0f);
 
     public Sprite[] spriteArray;
+
     void Start()
     {
         button = gameObject.GetComponent<Rigidbody2D>();
-        button.velocity = Vector2.down * 3;
     }
 
     int getLane()
@@ -35,6 +35,8 @@ public class Button : MonoBehaviour
 
     void Update()
     {
+        button.velocity += Vector2.down * 0.0005f;
+
         laneNumber = getLane();
         Player1 player1 = GameObject.Find("Player1").GetComponent<Player1>();
         Player2 player2 = GameObject.Find("Player2").GetComponent<Player2>();

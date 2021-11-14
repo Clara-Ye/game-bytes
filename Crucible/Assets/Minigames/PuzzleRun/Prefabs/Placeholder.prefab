@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 533845968171231569}
   - component: {fileID: 2047337386575747602}
+  - component: {fileID: 4143798155624000519}
   m_Layer: 0
   m_Name: Placeholder
   m_TagString: Untagged
@@ -46,3 +47,31 @@ MonoBehaviour:
   change: 0
   button: {fileID: 0}
   destroyPos: -10
+  laneNumber: 0
+  buttonRef1: {fileID: 0}
+  buttonRef1Pos: {x: 0, y: 0, z: 0}
+  buttonRef2: {fileID: 0}
+  buttonRef2Pos: {x: 0, y: 0, z: 0}
+  laneSeparation: {x: 1.59, y: 0, z: 0}
+  spriteArray: []
+--- !u!50 &4143798155624000519
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879988515038127080}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

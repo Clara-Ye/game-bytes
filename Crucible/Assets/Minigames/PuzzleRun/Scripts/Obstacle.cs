@@ -15,14 +15,13 @@ public class Obstacle : MonoBehaviour
     public float destroyPos = -10f;
     public int laneNumber;
     private float length;
-    public float lowerbound = 0f;
+    public float lowerbound = 0.1f;
     public float upperbound = 1f;
 
     void Start()
     {
         length = GetComponent<SpriteRenderer>().bounds.size.y;
         obstacle = gameObject.GetComponent<Rigidbody2D>();
-        obstacle.velocity = Vector2.down * 3;
         obstacleRef1Pos = obstacleRef1.transform.position;
         obstacleRef2Pos = obstacleRef2.transform.position;
     }
@@ -37,8 +36,10 @@ public class Obstacle : MonoBehaviour
 
     void Update()
     {
-        //speedFactor += 0.01f;
-        //obstacle.velocity = Vector2.down * speedFactor;
+        obstacle.velocity += Vector2.down * 0.0005f;
+        lowerbound = 0.1f * (obstacle.velocity.y / (Vector2.down.y * 3) / 2);
+        upperbound = 1f * (obstacle.velocity.y / (Vector2.down.y * 3) / 2);
+
         laneNumber = getLane();
         Player1 player1 = GameObject.Find("Player1").GetComponent<Player1>();
         Player2 player2 = GameObject.Find("Player2").GetComponent<Player2>();
