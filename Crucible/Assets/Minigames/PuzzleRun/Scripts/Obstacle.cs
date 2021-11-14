@@ -26,37 +26,32 @@ public class Obstacle : MonoBehaviour
         obstacleRef2Pos = obstacleRef2.transform.position;
     }
 
-    int getLane() {
+    int getLane()
+    {
         float xPos = obstacle.transform.position.x;
-        if (xPos < obstacleRef2Pos.x) {
-            return (int)((xPos - obstacleRef1Pos.x) / laneSeparation.x)+3;
+        if (xPos < obstacleRef2Pos.x)
+        {
+            return (int)((xPos - obstacleRef1Pos.x) / laneSeparation.x) + 3;
         }
-        return (int)((xPos - obstacleRef2Pos.x) / laneSeparation.x)+2;
+        return (int)((xPos - obstacleRef2Pos.x) / laneSeparation.x) + 2;
     }
 
     void Update()
     {
         obstacle.velocity += Vector2.down * 0.0005f;
-        lowerbound = 0.1f * (obstacle.velocity.y / (Vector2.down.y * 3) / 2);
-        upperbound = 1f * (obstacle.velocity.y / (Vector2.down.y * 3) / 2);
-
-        laneNumber = getLane();
-        Player1 player1 = GameObject.Find("Player1").GetComponent<Player1>();
-        Player2 player2 = GameObject.Find("Player2").GetComponent<Player2>();
-        if (player1.transform.position.y - lowerbound < obstacle.transform.position.y && 
-            obstacle.transform.position.y < player1.transform.position.y + upperbound ) {
-            if (height != 0 && laneNumber == player1.laneNumber) 
-            {
-                MinigameController.Instance.FinishGame(LastMinigameFinish.LOST);
-            }
-            if (height != 0 && laneNumber == player2.laneNumber)
-            {
-                MinigameController.Instance.FinishGame(LastMinigameFinish.LOST);
-            }
-        }
+        
         if (obstacle.transform.position.y < destroyPos)
         {
             Destroy(gameObject);
-         }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+       
+        if (height != 0 )
+        {
+            MinigameController.Instance.FinishGame(LastMinigameFinish.LOST);
+        }
     }
 }
