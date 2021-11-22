@@ -38,7 +38,7 @@ public class Button : MonoBehaviour
 
     void Update()
     {
-        button.velocity += Vector2.down * 0.0005f;
+        button.velocity += Vector2.down * 0.00015f;
 
         if (button.transform.position.y < destroyPos)
         {
