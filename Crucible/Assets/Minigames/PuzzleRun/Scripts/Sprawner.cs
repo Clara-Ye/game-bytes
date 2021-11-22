@@ -34,7 +34,7 @@ public class Sprawner : MonoBehaviour
         buttonRef1Pos = buttonRef1.transform.position;
         buttonRef2Pos = buttonRef2.transform.position;
         interval = 3f;
-        speed = Vector2.down * 3;
+        speed = Vector2.down * 4f;
 
         // decide which player gets obstacle and which gets button:
         getObstacleMode();
@@ -49,7 +49,7 @@ public class Sprawner : MonoBehaviour
     void Update()
     {
         timePassed += Time.deltaTime;
-        speed += Vector2.down * 0.0005f;
+        speed += Vector2.down * 0.00015f;
         interval -= 0.0001f;
 
         if (timePassed > interval)

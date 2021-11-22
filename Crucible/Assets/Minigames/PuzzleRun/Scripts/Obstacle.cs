@@ -38,7 +38,7 @@ public class Obstacle : MonoBehaviour
 
     void Update()
     {
-        obstacle.velocity += Vector2.down * 0.0005f;
+        obstacle.velocity += Vector2.down * 0.00015f;
         
         if (obstacle.transform.position.y < destroyPos)
         {

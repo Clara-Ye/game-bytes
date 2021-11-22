@@ -11,7 +11,7 @@ public class Background : MonoBehaviour
     void Start()
     {
         background = gameObject.GetComponent<Rigidbody2D>();
-        background.velocity = Vector2.down * 3;
+        background.velocity = Vector2.down * 4f;
         startPos = transform.position.y;
         length = GetComponent<SpriteRenderer>().bounds.size.y;
     }
@@ -19,7 +19,7 @@ public class Background : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        background.velocity += Vector2.down * 0.0005f;
+        background.velocity += Vector2.down * 0.00015f;
         if (transform.position.y < -5.08)
         {
             transform.position = new Vector3(transform.position.x,
